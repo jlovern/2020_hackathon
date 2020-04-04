@@ -8,7 +8,7 @@ config.read("config.ini")
 def GetShastaFact():
     out = ""
     shasta_facts = open(config['DEFAULT']['shasta_facts'],"r")
-    lines = shasta_facts.readLines()
+    lines = shasta_facts.readlines()
     out = lines[randint(0,len(lines)-1)]
     shasta_facts.close()
     return out
