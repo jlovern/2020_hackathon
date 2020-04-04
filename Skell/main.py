@@ -22,6 +22,7 @@ def AddShastaFact(fact):
 
 def generate():
     """Generate a side-view of mountains from perlin noise."""
+    
     shape = (1024,1024)
     scale = 100.0
     octaves = 6
@@ -40,6 +41,7 @@ def generate():
                                         repeaty=1024, 
                                         base=0)
     temp = Image.fromarray(world)
+    temp = temp.convert("L")
     temp.save("img1.png","PNG")
 
 def runDD():
