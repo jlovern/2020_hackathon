@@ -1,7 +1,9 @@
 import configparser
 import discord as d
-from random import randint
-import textAdventure
+from random import choice
+import noise
+import pillow
+from scipy.misc import toimage
 config = configparser.ConfigParser()
 config.read("config.ini")
 
@@ -9,14 +11,36 @@ def GetShastaFact():
     out = ""
     shasta_facts = open(config['DEFAULT']['shasta_facts'],"r")
     lines = shasta_facts.readlines()
-    out = lines[randint(0,len(lines)-1)]
+    out = choice(lines)
     shasta_facts.close()
     return out
 
 def AddShastaFact(fact):
     with open(config['DEFAULT']['shasta_facts'],"a") as shasta_facts:
         shasta_facts.write(fact)
+        
+
+def generate():
+    """Generate a side-view of mountains from perlin noise."""
+    shape = (1024,1024)
+    scale = 100.0
+    octaves = 6
+    persistence = 0.5
+    lacunarity = 2.0
     
+    world = np.zeros(shape)
+    for i in range(shape[0]):
+        for j in range(shape[1]):
+            world[i][j] = noise.pnoise2(i/scale, 
+                                        j/scale, 
+                                        octaves=octaves, 
+                                        persistence=persistence, 
+                                        lacunarity=lacunarity, 
+                                        repeatx=1024, 
+                                        repeaty=1024, 
+                                        base=0)
+    toimage(world).save("img1.png","PNG")
+
 def runDD():
     client = d.Client()
 
@@ -38,12 +62,13 @@ def runDD():
             elif message.content == "$shastabot test":
                 await message.channel.send(config["DISCORD"]["test_phrase"])
             elif message.content == "$shastabot generate":
-                await message.channel.send(file=d.File("MtShasta_aerial.JPG"))
+                generate()
+                await message.channel.send(file=d.File("img1.PNG"))
             else:
                 out = textAdventure.readCommand(message.content[10:])
                 for line in out:
                     await message.channel.send(line)
     client.run(config["DISCORD"]["discord_token"])
-    
-if __name__ == "__main__":
+
+if __name__=="__main__":
     runDD()

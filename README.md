@@ -5,7 +5,8 @@
    It is running on my home linux server, and both the server and the bot will be deleted on 4/15/2020, unless someone asks for an extension.</p>
 
 ####Configuration
-<p>Configuration settings are in `config.ini`. As of yet, here are such settings:</p>
+<p>Do `pip -r Skell/requirements.txt` before anything else
+<p>Configuration settings are in `Skell/config.ini`. As of yet, here are such settings:</p>
 <ul>
     <li>Default:
         <ul>
