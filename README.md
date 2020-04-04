@@ -19,3 +19,14 @@
 </ul>
 <p>
 
+####Discord commands
+
+<p>All commands are prefaced with `$shastabot`. Known commands can be listed with `$shastabot help`</p>
+
+
+####FAQ
+
+<p>Q: Why does `generate` only ever show one mountain<p>
+<p>A: Other mountains were not in the scope of this project.</p>
+<p>Q: Why are there so few facts?</p>
+<p>A: You can add additional facts yourself! I encourage you to get out there and discover something about the mountain.</p>

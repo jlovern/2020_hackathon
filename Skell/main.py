@@ -38,7 +38,7 @@ def runDD():
             elif message.content == "$shastabot test":
                 await message.channel.send(config["DISCORD"]["test_phrase"])
             elif message.content == "$shastabot generate":
-                await message.channel.send(file="MtShasta_aerial.JPG")
+                await message.channel.send(file=d.File("MtShasta_aerial.JPG"))
             else:
                 out = textAdventure.readCommand(message.content[10:])
                 for line in out:
