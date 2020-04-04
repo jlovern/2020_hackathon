@@ -1,9 +1,9 @@
 import configparser
 import discord as d
 from random import choice
+import numpy as np
 import noise
-import pillow
-from scipy.misc import toimage
+from PIL import Image
 config = configparser.ConfigParser()
 config.read("config.ini")
 
@@ -39,7 +39,8 @@ def generate():
                                         repeatx=1024, 
                                         repeaty=1024, 
                                         base=0)
-    toimage(world).save("img1.png","PNG")
+    temp = Image.fromarray(world)
+    temp.save("img1.png","PNG")
 
 def runDD():
     client = d.Client()
