@@ -30,17 +30,16 @@ def runDD():
         if message.author == client.user:
             return
         if message.content.startswith("$shastabot "):
-            message.content = message.content[10:]
-            if message.content == "fact get":
+            if message.content == "$shastabot fact get":
                 await message.channel.send("Did you know: "+GetShastaFact())
-            elif message.content.startswith("fact add"):
+            elif message.content.startswith("$shastabot fact add"):
                 AddShastaFact(message.content[18:])
                 await message.channel.send("Fact added: "+message.content[18:])
-            elif message.content == "test":
+            elif message.content == "$shastabot test":
                 await message.channel.send(config["DISCORD"]["test_phrase"])
-            elif message.content == "generate":
+            elif message.content == "$shastabot generate":
                 await message.channel.send(file="MtShasta_aerial.JPG")
-            elif message.content.startswith("$Shastabot "):
+            else:
                 out = textAdventure.readCommand(message.content[10:])
                 for line in out:
                     await message.channel.send(line)
