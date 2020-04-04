@@ -1,9 +1,7 @@
 import configparser
 import discord as d
 from random import choice
-import numpy as np
-import noise
-from PIL import Image
+
 config = configparser.ConfigParser()
 config.read("config.ini")
 
@@ -19,32 +17,6 @@ def AddShastaFact(fact):
     with open(config['DEFAULT']['shasta_facts'],"a") as shasta_facts:
         shasta_facts.write(fact)
         
-
-def generate():
-    """Generate a side-view of mountains from perlin noise."""
-    print("Generate request received. Starting generation.")
-    shape = (1024,1024)
-    scale = 100.0
-    octaves = 6
-    persistence = 0.5
-    lacunarity = 2.0
-    
-    world = np.zeros(shape)
-    for i in range(shape[0]):
-        for j in range(shape[1]):
-            world[i][j] = noise.pnoise2(i/scale, 
-                                        j/scale, 
-                                        octaves=octaves, 
-                                        persistence=persistence, 
-                                        lacunarity=lacunarity, 
-                                        repeatx=1024, 
-                                        repeaty=1024, 
-                                        base=0)
-    print("pnoise generated")
-    temp = Image.fromarray(world)
-    temp = temp.convert("L")
-    temp.save("img1.png","PNG")
-
 def runDD():
     client = d.Client()
 
@@ -58,6 +30,7 @@ def runDD():
         if message.author == client.user:
             return
         if message.content.startswith("$shastabot "):
+            print("Received message! Message is: ",message.content)
             if message.content == "$shastabot fact get":
                 await message.channel.send("Did you know: "+GetShastaFact())
             elif message.content.startswith("$shastabot fact add"):
@@ -67,11 +40,9 @@ def runDD():
                 await message.channel.send(config["DISCORD"]["test_phrase"])
             elif message.content == "$shastabot generate":
                 generate()
-                await message.channel.send(file=d.File("img1.png"))
+                await message.channel.send(file=d.File("MtShasta_aerial1.png"))
             else:
-                out = textAdventure.readCommand(message.content[10:])
-                for line in out:
-                    await message.channel.send(line)
+               await message.channel.send("Error: Command unknown")
     client.run(config["DISCORD"]["discord_token"])
 
 if __name__=="__main__":

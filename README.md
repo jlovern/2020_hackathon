@@ -1,3 +1,18 @@
+<!doctype html>
+<p>If you'd simply like to check out the features of the code, the bot will be 
+live at <a href="https://discord.gg/dxBYxtp">this discord server</a> until 4/15/2020.</p>
+<p>If you'd like to run it yourself, you'll need access to a discord bot account and a discord server.</p>
+
+<h6>Instructions for running it yourself:</h6>
+<p> run `pip install -r requirements.txt` to get all the requirements for this file.</p>
+<p> Edit `Skell/config.ini` to include your own discord bot token. If you don't have one of those, 
+you'll need to generate one via the <a href="https://discordapp.com/developers/docs/intro">discord developer portal.</a></p>
+<p> Connect the bot to a server or your account.</p>
+<p>Run the bot from the `Skell` directory with `python main.py`.</p>
+
+<p> At the moment, the only commands that are runnable are `$shastabot test`, `$shastabot fact get`, `$shastabot fact add {fact}`, and `$shastabot generate`.</p>
+
+
 <p>Thanks for taking a look at this file. Here's how to run it:</p>
 <p>First, make sure you have a <a href="https://discordpy.readthedocs.io/en/latest/discord.html">discord bot account</a>. 
    In order to interact with this program, it must be added to a discord server.
@@ -22,7 +37,6 @@
 
 ####Discord commands
 
-<p>All commands are prefaced with `$shastabot`. Known commands can be listed with `$shastabot help`</p>
 
 
 ####FAQ
