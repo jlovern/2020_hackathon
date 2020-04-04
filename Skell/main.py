@@ -39,7 +39,6 @@ def runDD():
             elif message.content == "$shastabot test":
                 await message.channel.send(config["DISCORD"]["test_phrase"])
             elif message.content == "$shastabot generate":
-                generate()
                 await message.channel.send(file=d.File("MtShasta_aerial1.png"))
             else:
                await message.channel.send("Error: Command unknown")
