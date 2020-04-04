@@ -22,7 +22,7 @@ def AddShastaFact(fact):
 
 def generate():
     """Generate a side-view of mountains from perlin noise."""
-    
+    print("Generate request received. Starting generation.")
     shape = (1024,1024)
     scale = 100.0
     octaves = 6
@@ -40,6 +40,7 @@ def generate():
                                         repeatx=1024, 
                                         repeaty=1024, 
                                         base=0)
+    print("pnoise generated")
     temp = Image.fromarray(world)
     temp = temp.convert("L")
     temp.save("img1.png","PNG")
@@ -66,7 +67,7 @@ def runDD():
                 await message.channel.send(config["DISCORD"]["test_phrase"])
             elif message.content == "$shastabot generate":
                 generate()
-                await message.channel.send(file=d.File("img1.PNG"))
+                await message.channel.send(file=d.File("img1.png"))
             else:
                 out = textAdventure.readCommand(message.content[10:])
                 for line in out:
